@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -58,12 +59,20 @@ public class ProfilePage extends BasicPage{
 		input.sendKeys(image);
 	}
 	public void deleteImage() {
-		driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/div/a[2]")).click();		
+		WebElement delete = driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/div/a[2]"));	
+		js.executeScript("arguments[0].click();", delete);
 	}
 	
 	//Method for change informations
 	public void updateProfile(String firstName, String lastName, String address, String phoneNo, String zipCode,
 			String country, String state, String city) {
+		
+		this.getFirstName().sendKeys(Keys.CONTROL + "a", Keys.DELETE);
+		this.getLastName().sendKeys(Keys.CONTROL + "a", Keys.DELETE);
+		this.getAddress().sendKeys(Keys.CONTROL + "a", Keys.DELETE);
+		this.getPhoneNo().sendKeys(Keys.CONTROL + "a", Keys.DELETE);
+		this.getZipCode().sendKeys(Keys.CONTROL + "a", Keys.DELETE);
+	
 		
 		this.getFirstName().sendKeys(firstName);
 		this.getLastName().sendKeys(lastName);
