@@ -23,6 +23,6 @@ public class NotificationSystemPage extends BasicPage {
 
 	public void notificationInvisible() {
 		WebElement systemMessage = driver.findElement(By.xpath("//*[contains(@class, 'system_message')]"));
-		wait.until(ExpectedConditions.invisibilityOf(systemMessage));
+		wait.until(ExpectedConditions.attributeToBe(systemMessage, "style", "display: none;"));
 	}
 }
