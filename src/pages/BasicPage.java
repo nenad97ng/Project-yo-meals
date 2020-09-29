@@ -7,11 +7,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class BasicPage {
 	protected WebDriver driver;
 	protected WebDriverWait wait;
-	JavascriptExecutor js = (JavascriptExecutor) driver;
+	JavascriptExecutor js;
 	
-	public BasicPage(WebDriver driver, WebDriverWait wait) {
+	public BasicPage(WebDriver driver, WebDriverWait wait,JavascriptExecutor js) {
 		super();
 		this.driver = driver;
 		this.wait = wait;
+		this.js = js;
 	}
 }
