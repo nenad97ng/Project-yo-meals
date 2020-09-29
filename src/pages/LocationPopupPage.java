@@ -11,7 +11,7 @@ public class LocationPopupPage extends BasicPage {
 		super(driver, wait);
 	}
 
-	// Get metods for get Popup and close
+	// Get Methods for get Popup and close
 	public WebElement getSelectLocation() {
 		return driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div/div/div[1]/div/a"));
 	}
@@ -20,7 +20,7 @@ public class LocationPopupPage extends BasicPage {
 		return driver.findElement(By.xpath("//*[@id=\"location-popup\"]/div/div/div/div/a"));
 	}
 
-	// Get metods for location inputs
+	// Get Methods for location inputs
 	public WebElement getKeyword() {
 		return driver.findElement(By.xpath("//*[@id='locality_keyword']"));
 	}
@@ -37,7 +37,7 @@ public class LocationPopupPage extends BasicPage {
 		return driver.findElement(By.xpath("//*[@name='btn_submit']"));
 	}
 
-	// Metods for open and set location
+	// Methods for open and set location
 	public void openPopup() {
 		this.getSelectLocation().click();
 	}
