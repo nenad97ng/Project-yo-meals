@@ -1,14 +1,15 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LocationPopupPage extends BasicPage {
 
-	public LocationPopupPage(WebDriver driver, WebDriverWait wait) {
-		super(driver, wait);
+	public LocationPopupPage(WebDriver driver, WebDriverWait wait,JavascriptExecutor js) {
+		super(driver, wait, js);
 	}
 
 	// Get Methods for get Popup and close

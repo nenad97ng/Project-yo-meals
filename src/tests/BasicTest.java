@@ -29,9 +29,10 @@ public abstract class BasicTest {
 	
 	protected WebDriver driver;
 	protected WebDriverWait wait;
-	JavascriptExecutor js = (JavascriptExecutor) driver;
+	protected JavascriptExecutor js;
 	protected String baseUrl = "http://demo.yo-meals.com";
-	
+	String email = "customer@dummyid.com";
+	String password = "12345678a";
 
 	@BeforeClass
 	public void beforeClass() {
@@ -40,8 +41,10 @@ public abstract class BasicTest {
 		
 		this.driver = new ChromeDriver();
 		this.wait = new WebDriverWait(driver, 30);
+		this.driver.manage().window().maximize();
 		this.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		this.driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		this.js = (JavascriptExecutor) driver;
 	}
 	
 	@AfterMethod

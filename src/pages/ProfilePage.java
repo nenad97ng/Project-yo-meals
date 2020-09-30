@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,8 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProfilePage extends BasicPage{
 
-	public ProfilePage(WebDriver driver, WebDriverWait wait) {
-		super(driver, wait);
+	public ProfilePage(WebDriver driver, WebDriverWait wait,JavascriptExecutor js) {
+		super(driver, wait, js);
 	}
 	
 	//Getters for basic informations
@@ -29,33 +30,38 @@ public class ProfilePage extends BasicPage{
 	public WebElement getZipCode() {
 		return driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[3]/div[2]/fieldset/input"));
 	}
-	public void getCountry(String country) {
+	public void getCountry(String country) throws InterruptedException {
 		WebElement countryElement = driver.findElement(By.xpath("//*[@id=\"user_country_id\"]"));
 		Select countrySelect = new Select(countryElement);
 		countrySelect.selectByVisibleText(country);
+		Thread.sleep(2000);
 	}
-	public void getState(String state) {
+	public void getState(String state) throws InterruptedException {
 		WebElement stateElement = driver.findElement(By.xpath("//*[@id=\"user_state_id\"]"));
 		Select stateSelect = new Select(stateElement);
 		stateSelect.selectByVisibleText(state);
+		Thread.sleep(2000);
 	}
-	public void getCity(String city) {
+	public void getCity(String city) throws InterruptedException {
 		WebElement cityElement = driver.findElement(By.xpath("//*[@id=\"user_city\"]"));
 		Select citySelect = new Select(cityElement);
 		citySelect.selectByVisibleText(city);
+		Thread.sleep(2000);
 	}
 	public WebElement getInfoSaveButton() {
 		return driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[5]/div/fieldset/input"));
 	}
 	
 	//Profile picture 
-	public void getUploadImage() {
-		WebElement upload = driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/div/a[1]"));
-		js.executeScript("arguments[0].click();", upload);
+	public WebElement getUploadImage() throws InterruptedException {
+		return  driver.findElement(By.xpath("/html/body/div[6]/div/div/div/div[2]/div/div/div[2]/div/div[1]/div/a"));
+		
 	}
-	public void uploadImage(String image) {
-		this.getUploadImage();
-		WebElement input = driver.findElement(By.xpath("//input[@type='file']"));
+	public void uploadImage(String image) throws InterruptedException {
+		
+		js.executeScript("arguments[0].click();", this.getUploadImage());
+		Thread.sleep(3000);
+		WebElement input = driver.findElement(By.xpath("//*[@id=\"form-upload\"]/input"));
 		input.sendKeys(image);
 	}
 	public void deleteImage() {
@@ -65,7 +71,7 @@ public class ProfilePage extends BasicPage{
 	
 	//Method for change informations
 	public void updateProfile(String firstName, String lastName, String address, String phoneNo, String zipCode,
-			String country, String state, String city) {
+			String country, String state, String city) throws InterruptedException {
 		
 		this.getFirstName().sendKeys(Keys.CONTROL + "a", Keys.DELETE);
 		this.getLastName().sendKeys(Keys.CONTROL + "a", Keys.DELETE);
