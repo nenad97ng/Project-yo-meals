@@ -35,6 +35,7 @@ public class MealItemTest extends BasicTest {
 		// Add meal to cart
 		locationPopup.closePopup();
 		meal.addMealToCart("3");
+		Thread.sleep(1000);
 		Assert.assertTrue(notificationSystem.getMessage().contains("The Following Errors Occurred:"),
 				"[ERROR]: Error message was not displayed.");
 		Assert.assertTrue(notificationSystem.getMessage().contains("Please Select Location"),
@@ -49,14 +50,14 @@ public class MealItemTest extends BasicTest {
 		// Add meal to cart
 		Thread.sleep(2000);
 		meal.addMealToCart("3");
-
+		Thread.sleep(1000);
 		Assert.assertTrue(notificationSystem.getMessage().contains("Meal Added To Cart"),
 				"[ERROR]: Meal Added message was not displayed.");
 	}
 
 	@Test(priority = 2)
 	public void addMealToFavoriteTest() throws InterruptedException {
-		Thread.sleep(2000);
+
 		this.driver.navigate().to(this.baseUrl + "/meal/lobster-shrimp-chicken-quesadilla-combo");
 
 		// Import Pages
@@ -67,9 +68,8 @@ public class MealItemTest extends BasicTest {
 
 		// Add meal to favorite
 		locationPopup.closePopup();
-		Thread.sleep(2000);
 		meal.addMealToFavorite();
-
+		Thread.sleep(500);
 		Assert.assertTrue(notificationSystem.getMessage().contains("Please login first!"),
 				"[ERROR]:Please login message was not displayed.");
 
@@ -81,7 +81,7 @@ public class MealItemTest extends BasicTest {
 		this.driver.navigate().to(this.baseUrl + "/meal/lobster-shrimp-chicken-quesadilla-combo");
 
 		meal.addMealToFavorite();
-		Thread.sleep(2000);
+		Thread.sleep(500);
 		Assert.assertTrue(notificationSystem.getMessage().contains("Product has been added to your favorites."),
 				"[ERROR]:Product added message was not displayed.");
 
@@ -89,7 +89,7 @@ public class MealItemTest extends BasicTest {
 
 	@Test(priority = 3)
 	public void clearCartTest() throws InterruptedException, IOException {
-		Thread.sleep(2000);
+
 		this.driver.navigate().to(this.baseUrl + "/meals");
 
 		// Import Pages
@@ -107,6 +107,7 @@ public class MealItemTest extends BasicTest {
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		XSSFSheet sheet = workbook.getSheet("Meals");
+		System.out.println("Brojj " + sheet.getLastRowNum());
 
 		// Add meal to cart (From xlsx file)
 		for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
@@ -124,6 +125,7 @@ public class MealItemTest extends BasicTest {
 			Thread.sleep(1000);
 		}
 		sa.assertAll();
+
 		// Clear cart
 		cartSummary.clearAll();
 
