@@ -16,19 +16,19 @@ public class ProfilePage extends BasicPage{
 	
 	//Getters for basic informations
 	public WebElement getFirstName() {
-		return driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[1]/div[1]/fieldset/input"));
+		return driver.findElement(By.xpath("//*[@name='user_first_name']"));
 	}
 	public WebElement getLastName() {
-		return driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[1]/div[2]/fieldset/input"));
+		return driver.findElement(By.xpath("//*[@name='user_last_name']"));
 	}
 	public WebElement getAddress() {
-		return driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[2]/div[2]/fieldset/input"));
+		return driver.findElement(By.xpath("//*[@name='user_address']"));
 	}
 	public WebElement getPhoneNo() {
-		return driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[3]/div[1]/fieldset/input"));
+		return driver.findElement(By.xpath("//*[@name='user_phone']"));
 	}
 	public WebElement getZipCode() {
-		return driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[3]/div[2]/fieldset/input"));
+		return driver.findElement(By.xpath("//*[@name='user_zip']"));
 	}
 	public void getCountry(String country) throws InterruptedException {
 		WebElement countryElement = driver.findElement(By.xpath("//*[@id=\"user_country_id\"]"));

@@ -15,7 +15,7 @@ public class MealPage extends BasicPage{
 	
 	//Getters for elements
 	public WebElement getQtyInput() {
-		return driver.findElement(By.xpath("//*[@id=\"body\"]/section[1]/div/div/div[2]/div/div[3]/div[1]/ul/li[3]/input"));
+		return driver.findElement(By.xpath("//*[@name='product_qty']"));
 	}
 	public WebElement getAddToCart() {
 		return driver.findElement(By.xpath("//*[@id=\"body\"]/section[1]/div/div/div[2]/div/div[3]/div[2]/a"));

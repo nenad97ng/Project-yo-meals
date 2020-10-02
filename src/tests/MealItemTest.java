@@ -35,6 +35,7 @@ public class MealItemTest extends BasicTest {
 		// Add meal to cart
 		locationPopup.closePopup();
 		meal.addMealToCart("3");
+		Thread.sleep(500);
 		Assert.assertTrue(notificationSystem.getMessage().contains("The Following Errors Occurred:"),
 				"[ERROR]: Error message was not displayed.");
 		Assert.assertTrue(notificationSystem.getMessage().contains("Please Select Location"),
@@ -45,9 +46,9 @@ public class MealItemTest extends BasicTest {
 		// Set location
 		locationPopup.openPopup();
 		locationPopup.setLocation("City Center - Albany");
-
+		Thread.sleep(500);
 		// Add meal to cart
-		Thread.sleep(2000);
+
 		meal.addMealToCart("3");
 
 		Assert.assertTrue(notificationSystem.getMessage().contains("Meal Added To Cart"),
@@ -72,7 +73,7 @@ public class MealItemTest extends BasicTest {
 
 		Assert.assertTrue(notificationSystem.getMessage().contains("Please login first!"),
 				"[ERROR]:Please login message was not displayed.");
-
+		notificationSystem.notificationInvisible();
 		this.driver.navigate().to(this.baseUrl + "/guest-user/login-form");
 
 		// Login and add meal to favorite
@@ -81,7 +82,7 @@ public class MealItemTest extends BasicTest {
 		this.driver.navigate().to(this.baseUrl + "/meal/lobster-shrimp-chicken-quesadilla-combo");
 
 		meal.addMealToFavorite();
-		Thread.sleep(2000);
+		Thread.sleep(500);
 		Assert.assertTrue(notificationSystem.getMessage().contains("Product has been added to your favorites."),
 				"[ERROR]:Product added message was not displayed.");
 
@@ -121,7 +122,7 @@ public class MealItemTest extends BasicTest {
 
 			sa.assertTrue(notificationSystem.getMessage().contains("Meal Added To Cart"),
 					"[ERROR]:Meal added message was not displayed.");
-			Thread.sleep(1000);
+			notificationSystem.notificationInvisible();
 		}
 		sa.assertAll();
 		// Clear cart
