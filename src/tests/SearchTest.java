@@ -20,8 +20,9 @@ public class SearchTest extends BasicTest {
 
 	@Test
 	public void searchResultsTest() throws IOException, InterruptedException {
-		this.driver.navigate().to(this.baseUrl + "/meals");
 		
+		this.driver.navigate().to(this.baseUrl + "/meals");
+
 		//Import pages
 		LocationPopupPage locationPopup = new LocationPopupPage(driver, wait, js);
 		SearchResultPage searchResult = new SearchResultPage(driver, wait, js);
@@ -73,5 +74,8 @@ public class SearchTest extends BasicTest {
 						"[ERROR]: Names of results is not correct on iterarion num " + i);
 			}
 		}
+		
+		workbook.close();
+		fis.close();
 	}
 }

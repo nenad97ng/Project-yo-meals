@@ -50,6 +50,8 @@ public abstract class BasicTest {
 	@AfterMethod
 	public void afterTest(ITestResult result) throws IOException {
 		 driver.manage().deleteAllCookies();
+		 driver.navigate().refresh();
+		 
 		if (result.getStatus() == ITestResult.FAILURE) {
 			File ss = ((TakesScreenshot)this.driver).getScreenshotAs(OutputType.FILE);
 			String fileName = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss'.png'").format(new Date());

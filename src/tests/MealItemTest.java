@@ -25,6 +25,7 @@ public class MealItemTest extends BasicTest {
 
 	@Test(priority = 1)
 	public void addMealToCartTest() throws InterruptedException {
+		
 		this.driver.navigate().to(this.baseUrl + "/meal/lobster-shrimp-chicken-quesadilla-combo");
 
 		// Import Pages
@@ -35,7 +36,7 @@ public class MealItemTest extends BasicTest {
 		// Add meal to cart
 		locationPopup.closePopup();
 		meal.addMealToCart("3");
-		Thread.sleep(500);
+
 		Assert.assertTrue(notificationSystem.getMessage().contains("The Following Errors Occurred:"),
 				"[ERROR]: Error message was not displayed.");
 		Assert.assertTrue(notificationSystem.getMessage().contains("Please Select Location"),
@@ -47,6 +48,7 @@ public class MealItemTest extends BasicTest {
 		locationPopup.openPopup();
 		locationPopup.setLocation("City Center - Albany");
 		Thread.sleep(500);
+		
 		// Add meal to cart
 
 		meal.addMealToCart("3");
@@ -119,7 +121,7 @@ public class MealItemTest extends BasicTest {
 			this.driver.navigate().to(links);
 			Thread.sleep(2000);
 			meal.addMealToCart("1");
-
+			
 			sa.assertTrue(notificationSystem.getMessage().contains("Meal Added To Cart"),
 					"[ERROR]:Meal added message was not displayed.");
 			notificationSystem.notificationInvisible();
@@ -130,5 +132,9 @@ public class MealItemTest extends BasicTest {
 
 		Assert.assertTrue(notificationSystem.getMessage().contains("All meals removed from Cart successfully"),
 				"[ERROR]: Meals removed message was not displayed.");
+		
+		workbook.close();
+		fis.close();
+		
 	}
 }
